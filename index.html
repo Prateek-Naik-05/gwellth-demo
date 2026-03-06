@@ -1,0 +1,3105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWellth Foods | Premium Himalayan Wellness</title>
+    <meta name="description"
+        content="Prebiotic honey, Himalayan jaggery, ancient millets — handpicked from Uttarakhand.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --deep-earth: #1C1208;
+            --amber: #C47A2A;
+            --honey-gold: #F2B84B;
+            --forest: #2F5930;
+            --sage: #6B8F6B;
+            --parchment: #F9F2E5;
+            --cream: #FDF6EC;
+            --rust: #8B2E0F;
+            --ink: #1A1209;
+            --muted: #8A7A65;
+            --border: #E8DDD0;
+            --cta-hover: #D4892F;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            background-color: var(--deep-earth);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+            /* Custom cursor */
+        }
+
+        /* Grain Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            opacity: 0.025;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            z-index: 9999;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: none;
+        }
+
+        button {
+            cursor: none;
+            border: none;
+            font-family: inherit;
+            background: none;
+        }
+
+        /* Layout Utilities */
+        .section-dark {
+            background: var(--deep-earth);
+            color: var(--parchment);
+            position: relative;
+        }
+
+        .section-dark::before,
+        .section-dark::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            /* Clip orbs inside their own section */
+            clip-path: inset(0);
+        }
+
+        .orb-amber::before {
+            background: radial-gradient(circle, rgba(196, 122, 42, 0.18) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .orb-forest::after {
+            background: radial-gradient(circle, rgba(47, 89, 48, 0.15) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Custom Cursor */
+        #cursor-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--amber);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        #cursor-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(196, 122, 42, 0.4);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #cursor-ring.hover-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(196, 122, 42, 0.1);
+            border-color: rgba(196, 122, 42, 0.8);
+        }
+
+        #cursor-ring.hover-view {
+            width: 72px;
+            height: 72px;
+            background: rgba(196, 122, 42, 0.2);
+        }
+
+        #cursor-text {
+            display: none;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        #cursor-ring.hover-view #cursor-text {
+            display: block;
+            content: "VIEW";
+        }
+
+        #cursor-ring.hover-drag #cursor-text {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+
+            #cursor-dot,
+            #cursor-ring {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            a,
+            button {
+                cursor: pointer;
+            }
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            height: 36px;
+            background: var(--forest);
+            color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            font-size: 12px;
+            font-weight: 400;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            transition: transform 300ms ease;
+        }
+
+        .announcement-bar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .marquee-inner {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            animation: marquee-scroll 30s linear infinite;
+        }
+
+        .announcement-bar:hover .marquee-inner {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 36px;
+            width: 100%;
+            height: 72px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            top: 0;
+            background: rgba(28, 18, 8, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(242, 184, 75, 0.12);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 14px;
+            color: rgba(249, 242, 229, 0.8);
+            position: relative;
+            transition: color 200ms ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--amber);
+            border-radius: 50%;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 200ms ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--parchment);
+        }
+
+        .nav-links a:hover::after {
+            transform: translateX(-50%) scale(1);
+        }
+
+        .nav-links a.active {
+            color: var(--parchment);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            height: 2px;
+            border-radius: 0;
+            transform: translateX(-50%) scale(1);
+            bottom: -6px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            color: var(--parchment);
+        }
+
+        .nav-actions svg {
+            width: 20px;
+            height: 20px;
+            transition: stroke 200ms;
+        }
+
+        .wishlist-icon {
+            position: relative;
+        }
+
+        .wishlist-count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: var(--amber);
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .cart-pill {
+            background: var(--amber);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 13px;
+            transition: background 200ms, transform 200ms;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-pill:hover {
+            background: var(--cta-hover);
+            transform: scale(1.04);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--amber);
+            transition: all 300ms ease;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-actions .wishlist-icon {
+                display: none;
+            }
+        }
+
+        /* Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85vw;
+            max-width: 360px;
+            height: 100vh;
+            background: var(--deep-earth);
+            z-index: 10001;
+            padding: 80px 40px;
+            transition: left 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .mobile-drawer.open {
+            left: 0;
+        }
+
+        .drawer-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--parchment);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 400ms ease;
+        }
+
+        .mobile-drawer.open .drawer-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: var(--deep-earth);
+            display: flex;
+            align-items: center;
+            padding-top: 72px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        /* Background Video */
+        .hero-video-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Dark overlay so text remains legible */
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to right,
+                    rgba(16, 10, 4, 0.78) 0%,
+                    rgba(16, 10, 4, 0.60) 45%,
+                    rgba(16, 10, 4, 0.25) 75%,
+                    rgba(16, 10, 4, 0.05) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 560px;
+            text-align: left;
+        }
+
+        /* Override container centering inside hero */
+        .hero .container {
+            margin-left: 0;
+            margin-right: auto;
+            padding-left: 80px;
+            width: 100%;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(242, 184, 75, 0.18);
+            border: 1px solid rgba(242, 184, 75, 0.55);
+            color: #F5C55A;
+            padding: 8px 18px;
+            border-radius: 99px;
+            margin-bottom: 24px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 0.95;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .h1-l1 {
+            color: #FFFFFF;
+            font-weight: 900;
+        }
+
+        .h1-l2 {
+            color: #F5C55A;
+            font-weight: 900;
+            font-style: italic;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9), 0 0 20px rgba(196, 122, 42, 0.4);
+        }
+
+        .h1-l3 {
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 900;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.90);
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 16px rgba(0, 0, 0, 0.95);
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: transform 300ms, box-shadow 300ms;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(196, 122, 42, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--parchment);
+            border: 1px solid rgba(249, 242, 229, 0.25);
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: border-color 300ms, transform 300ms;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(249, 242, 229, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .social-proof {
+            display: flex;
+            gap: 24px;
+            color: rgba(249, 242, 229, 0.82);
+            font-size: 13px;
+            align-items: center;
+            flex-wrap: wrap;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-proof span {
+            color: #F5C55A;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 1;
+            transition: opacity 300ms;
+        }
+
+        .scroll-indicator.hidden {
+            opacity: 0;
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 48px;
+            background: var(--amber);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .scroll-text {
+            color: rgba(249, 242, 229, 0.4);
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        /* Animations config for reveal */
+        .revealable {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-img {
+                width: 100%;
+                mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 40%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 40%, transparent 100%);
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+                z-index: 3;
+            }
+
+            .hero-badge,
+            .hero-sub {
+                max-width: 100%;
+            }
+
+            .hero {
+                align-items: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Elements will be appended via scripts -->
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"><span id="cursor-text"></span></div>
+
+    <!-- Section 1: Announcement Bar -->
+    <div class="announcement-bar" id="announcement">
+        <div class="marquee-inner">
+            🌿 Free Shipping Above ₹499 &nbsp;◆&nbsp; 100% Natural Products &nbsp;◆&nbsp; Sourced from Uttarakhand
+            &nbsp;◆&nbsp; Ships to 35+ Countries &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            🌿 Free Shipping Above ₹499 &nbsp;◆&nbsp; 100% Natural Products &nbsp;◆&nbsp; Sourced from Uttarakhand
+            &nbsp;◆&nbsp; Ships to 35+ Countries &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
+    <!-- Section 1: Navbar -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <img src="assets/logo.png" alt="GWellth Logo">
+        </a>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Our Story</a>
+            <a href="#">Benefits</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#" aria-label="Search"><svg fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg></a>
+            <a href="#" class="wishlist-icon" aria-label="Wishlist">
+                <svg fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <span class="wishlist-count" id="wishlist-badge">0</span>
+            </a>
+            <a href="#" class="cart-pill">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 11V7a4 4 0 00-8 0v4M4 9h16l-2 11H6L4 9z" />
+                </svg>
+                <span id="cart-count">0</span>
+            </a>
+            <div class="menu-toggle" id="menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-backdrop" id="drawer-bg"></div>
+    <div class="mobile-drawer" id="drawer">
+        <a href="#" class="logo" style="margin-bottom: 40px;">
+            <img src="assets/logo.png" alt="GWellth Logo">
+        </a>
+        <a href="#" class="drawer-link" style="transition-delay: 60ms">Home</a>
+        <a href="#" class="drawer-link" style="transition-delay: 120ms">Shop</a>
+        <a href="#" class="drawer-link" style="transition-delay: 180ms">Our Story</a>
+        <a href="#" class="drawer-link" style="transition-delay: 240ms">Benefits</a>
+        <a href="#" class="drawer-link" style="transition-delay: 300ms">Blog</a>
+    </div>
+
+    <!-- Section 2: Hero -->
+    <section class="hero section-dark orb-amber orb-forest">
+        <!-- Background Video -->
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline preload="auto">
+                <source src="assets/hero_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-video-overlay"></div>
+        <div class="container relative">
+            <div class="hero-content">
+                <div class="hero-badge revealable" data-delay="0">✦ Natural · Prebiotic · Himalayan</div>
+                <h1 class="hero-h1 font-playfair">
+                    <span class="h1-l1 revealable" data-delay="150">Nature's Most</span>
+                    <span class="h1-l2 revealable" data-delay="260">Powerful Gut</span>
+                    <span class="h1-l3 revealable" data-delay="370">Foods.</span>
+                </h1>
+                <p class="hero-sub revealable" data-delay="500">
+                    Prebiotic honey, Himalayan jaggery, ancient millets — handpicked from Uttarakhand's pristine
+                    altitude
+                    farms to fuel your gut, immunity, and energy.
+                </p>
+                <div class="hero-ctas revealable" data-delay="650">
+                    <a href="#" class="btn-primary">Shop Our Products</a>
+                    <a href="#" class="btn-secondary">Our Story &rarr;</a>
+                </div>
+                <div class="social-proof revealable" data-delay="800">
+                    <div>⭐ <span>4.8/5</span> Rating</div>
+                    <div><span>1,000+</span> Customers</div>
+                    <div><span>35+</span> Countries</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" id="scroll-ind">
+            <div class="scroll-line"></div>
+            <div class="scroll-text">SCROLL</div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 3: Stats Marquee */
+        .stats-marquee {
+            height: 64px;
+            background: var(--amber);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stats-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            width: 100%;
+        }
+
+
+
+        .strip-row-2 {
+            display: none;
+        }
+
+        .stat-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 24px;
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 22px;
+        }
+
+        .stat-lbl {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .stat-sep {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 8px;
+        }
+    </style>
+
+    <!-- Section 3: Marquee -->
+    <section class="stats-marquee">
+        <div class="stats-row strip-row-1">
+            <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Natural Products</span><span
+                    class="stat-sep">◆</span></div>
+            <div class="stat-item"><span class="stat-num">35+</span><span class="stat-lbl">Countries Shipped</span><span
+                    class="stat-sep">◆</span></div>
+            <div class="stat-item"><span class="stat-num">1,000+</span><span class="stat-lbl">Happy
+                    Customers</span><span class="stat-sep">◆</span></div>
+            <div class="stat-item"><span class="stat-num">50+</span><span class="stat-lbl">Premium SKUs</span><span
+                    class="stat-sep">◆</span></div>
+            <div class="stat-item"><span class="stat-num">0</span><span class="stat-lbl">Artificial
+                    Additives</span><span class="stat-sep">◆</span></div>
+            <div class="stat-item"><span class="stat-num">3+</span><span class="stat-lbl">Years of Wellness</span><span
+                    class="stat-sep">◆</span></div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 4: Categories */
+        .categories {
+            background: var(--parchment);
+            padding: 100px 0;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--amber);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 52px;
+            color: var(--ink);
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.1;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .cat-card {
+            aspect-ratio: 3/4;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 0 0 0 0px var(--amber);
+            transition: box-shadow 300ms ease;
+        }
+
+        .cat-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 600ms ease;
+        }
+
+        .cat-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(28, 18, 8, 0.9) 0%, rgba(28, 18, 8, 0) 70%);
+            transition: background 400ms ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            color: white;
+        }
+
+        .cat-card.honey .cat-overlay {
+            background: linear-gradient(to top, rgba(196, 122, 42, 0.9) 0%, rgba(196, 122, 42, 0) 70%);
+        }
+
+        .cat-card.gurr .cat-overlay {
+            background: linear-gradient(to top, rgba(139, 46, 15, 0.9) 0%, rgba(139, 46, 15, 0) 70%);
+        }
+
+        .cat-card.millet .cat-overlay {
+            background: linear-gradient(to top, rgba(47, 89, 48, 0.9) 0%, rgba(47, 89, 48, 0) 70%);
+        }
+
+        .cat-card.spice .cat-overlay {
+            background: linear-gradient(to top, rgba(139, 46, 15, 0.9) 0%, rgba(139, 46, 15, 0) 70%);
+        }
+
+        .cat-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cat-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cat-arrow {
+            color: var(--amber);
+            font-size: 16px;
+            transition: transform 300ms;
+        }
+
+        .cat-desc {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 400ms ease;
+            max-height: 0;
+            overflow: hidden;
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 12px;
+        }
+
+        .cat-btn {
+            margin-top: 16px;
+            background: var(--amber);
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 6px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 400ms;
+        }
+
+        .cat-card:hover {
+            box-shadow: inset 0 0 0 2px var(--amber);
+        }
+
+        .cat-card:hover .cat-photo {
+            transform: scale(1.08);
+        }
+
+        .cat-card:hover .cat-overlay {
+            opacity: 1;
+        }
+
+        .cat-card:hover .cat-desc {
+            transform: translateY(0);
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        .cat-card:hover .cat-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cat-card:hover .cat-arrow {
+            transform: translateX(4px);
+        }
+
+        .scroll-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 700ms ease-out, transform 700ms ease-out;
+        }
+
+        .scroll-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Section 4: Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">Explore Our World</span>
+                <h2 class="section-title">Four Worlds of Wellness</h2>
+            </div>
+            <div class="cat-grid">
+                <!-- Prebiotic Honey -->
+                <div class="cat-card honey scroll-up" style="transition-delay: 0ms">
+                    <img src="assets/prebiotic_honey.jpg" alt="Honey" class="cat-photo">
+                    <div class="cat-overlay">
+                        <h3 class="cat-name">Prebiotic Honey</h3>
+                        <div class="cat-meta"><span>12 PRODUCTS</span><span class="cat-arrow">&rarr;</span></div>
+                        <p class="cat-desc">Infused with natural herbs from the high altitudes of the Himalayas.</p>
+                        <div class="cat-btn">Shop Now &rarr;</div>
+                    </div>
+                </div>
+                <!-- HimGur -->
+                <div class="cat-card gurr scroll-up" style="transition-delay: 120ms">
+                    <img src="assets/jaggery_blocks.jpg" alt="Jaggery" class="cat-photo">
+                    <div class="cat-overlay">
+                        <h3 class="cat-name">HimGur Jaggery</h3>
+                        <div class="cat-meta"><span>8 PRODUCTS</span><span class="cat-arrow">&rarr;</span></div>
+                        <p class="cat-desc">Unrefined sugarcane crystals packed with essential minerals.</p>
+                        <div class="cat-btn">Shop Now &rarr;</div>
+                    </div>
+                </div>
+                <!-- HimMillets -->
+                <div class="cat-card millet scroll-up" style="transition-delay: 240ms">
+                    <img src="assets/millets.jpg" alt="Millet" class="cat-photo">
+                    <div class="cat-overlay">
+                        <h3 class="cat-name">HimMillets</h3>
+                        <div class="cat-meta"><span>15 PRODUCTS</span><span class="cat-arrow">&rarr;</span></div>
+                        <p class="cat-desc">Ancient grains cultivated for optimal gut health and sustained energy.</p>
+                        <div class="cat-btn">Shop Now &rarr;</div>
+                    </div>
+                </div>
+                <!-- South Indian -->
+                <div class="cat-card spice scroll-up" style="transition-delay: 360ms">
+                    <img src="assets/south__indian_condiments.jpg" alt="Spices" class="cat-photo">
+                    <div class="cat-overlay">
+                        <h3 class="cat-name">South Indian</h3>
+                        <div class="cat-meta"><span>18 PRODUCTS</span><span class="cat-arrow">&rarr;</span></div>
+                        <p class="cat-desc">Authentic condiments and spice blends for daily wellness.</p>
+                        <div class="cat-btn">Shop Now &rarr;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 5: Products */
+        .products {
+            padding: 100px 0;
+            background: var(--deep-earth);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+        }
+
+        .products-header .section-title {
+            color: var(--parchment);
+            font-size: 52px;
+            max-width: 600px;
+        }
+
+        .view-all {
+            color: var(--amber);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: color 300ms;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-all:hover {
+            color: var(--honey-gold);
+        }
+
+        .view-all:hover span {
+            transform: translateX(4px);
+            transition: 300ms;
+        }
+
+        .prod-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .prod-card {
+            background: rgba(249, 242, 229, 0.05);
+            border: 1px solid rgba(249, 242, 229, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 400ms ease, box-shadow 400ms ease;
+        }
+
+        .prod-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(196, 122, 42, 0.3);
+        }
+
+        .prod-img-zone {
+            height: 280px;
+            background: var(--cream);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .prod-img {
+            max-width: 85%;
+            max-height: 85%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+            transition: transform 400ms ease;
+        }
+
+        .prod-card:hover .prod-img {
+            transform: scale(1.06);
+        }
+
+        .prod-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--rust);
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            padding: 6px 12px;
+            border-radius: 0 0 6px 0;
+            z-index: 2;
+        }
+
+        .prod-wish {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: rgba(28, 18, 8, 0.5);
+            z-index: 2;
+            transition: all 300ms spring;
+            cursor: pointer;
+        }
+
+        .prod-wish.active {
+            color: var(--amber);
+            fill: var(--amber);
+        }
+
+        .wish-plus {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--amber);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .prod-wish.active+.wish-plus {
+            animation: floatUp 500ms forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+        }
+
+        .quick-view {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 300ms ease;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .prod-card:hover .quick-view {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .qv-btn {
+            background: rgba(28, 18, 8, 0.7);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .qv-btn:hover {
+            background: var(--amber);
+            color: white;
+        }
+
+        .prod-info {
+            padding: 20px 22px;
+        }
+
+        .prod-name {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--parchment);
+            margin-bottom: 12px;
+        }
+
+        .prod-variants {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .var-pill {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .prod-bot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: var(--muted);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+        }
+
+        .price-new {
+            color: var(--honey-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .add-to-cart {
+            width: 36px;
+            height: 36px;
+            border-radius: 18px;
+            background: var(--amber);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding-left: 10px;
+            transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .add-to-cart svg {
+            flex-shrink: 0;
+            margin-right: 8px;
+        }
+
+        .add-to-cart span {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+
+        .prod-card:hover .add-to-cart {
+            width: 140px;
+        }
+
+        .prod-card:hover .add-to-cart span {
+            opacity: 1;
+            transition-delay: 100ms;
+        }
+
+        .add-to-cart:hover {
+            background: var(--cta-hover);
+        }
+
+        @media (max-width: 900px) {
+            .prod-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .prod-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Section 5: Featured Products -->
+    <section class="products section-dark orb-forest">
+        <div class="container">
+            <div class="products-header">
+                <h2 class="section-title font-playfair">Our Bestselling Prebiotic Honey</h2>
+                <a href="#" class="view-all">View All <span>&rarr;</span></a>
+            </div>
+            <div class="prod-grid">
+                <!-- Product 1 -->
+                <div class="prod-card scroll-up">
+                    <div class="prod-img-zone">
+                        <div class="prod-badge">-15%</div>
+                        <svg class="prod-wish" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span class="wish-plus">+1</span>
+                        <div class="quick-view">
+                            <div class="qv-btn">Quick View</div>
+                        </div>
+                        <img src="assets/Ashwagandha Prebiotic Power.png" alt="Ashwagandha Prebiotic Power"
+                            class="prod-img">
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Ashwagandha Prebiotic Power Honey</h3>
+                        <div class="prod-variants">
+                            <div class="var-pill" style="background: var(--amber)"></div>
+                            <div class="var-pill" style="background: var(--forest)"></div>
+                        </div>
+                        <div class="prod-bot">
+                            <div class="price-col">
+                                <span class="price-old">₹899</span>
+                                <span class="price-new">₹759</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 11V7a4 4 0 00-8 0v4M4 9h16l-2 11H6L4 9z" />
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="prod-card scroll-up" style="transition-delay: 100ms">
+                    <div class="prod-img-zone">
+                        <svg class="prod-wish" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span class="wish-plus">+1</span>
+                        <div class="quick-view">
+                            <div class="qv-btn">Quick View</div>
+                        </div>
+                        <img src="assets/Pure Jamun Honey.png" alt="Pure Jamun Honey" class="prod-img"
+                            style="mix-blend-mode: normal;">
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Pure Jamun Honey</h3>
+                        <div class="prod-variants">
+                            <div class="var-pill" style="background: var(--sage)"></div>
+                        </div>
+                        <div class="prod-bot">
+                            <div class="price-col">
+                                <span class="price-new">₹959</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 11V7a4 4 0 00-8 0v4M4 9h16l-2 11H6L4 9z" />
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="prod-card scroll-up" style="transition-delay: 200ms">
+                    <div class="prod-img-zone">
+                        <div class="prod-badge">-20%</div>
+                        <svg class="prod-wish" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span class="wish-plus">+1</span>
+                        <div class="quick-view">
+                            <div class="qv-btn">Quick View</div>
+                        </div>
+                        <img src="assets/Lemon Honey- 100% Natural And Pure Honey.png" alt="Lemon Honey"
+                            class="prod-img">
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Lemon Honey</h3>
+                        <div class="prod-variants">
+                            <div class="var-pill" style="background: var(--rust)"></div>
+                        </div>
+                        <div class="prod-bot">
+                            <div class="price-col">
+                                <span class="price-old">₹499</span>
+                                <span class="price-new">₹399</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 11V7a4 4 0 00-8 0v4M4 9h16l-2 11H6L4 9z" />
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* Section 6: Brand Story */
+        .brand-story {
+            background: var(--forest);
+            position: relative;
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        /* Himalaya background image */
+        .brand-story::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('assets/Himayalay.png') center/cover no-repeat;
+            opacity: 0.50;
+            z-index: 0;
+        }
+
+        .story-texture {
+            display: none;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+
+        .story-text-col {
+            position: relative;
+            z-index: 3;
+            text-align: left;
+        }
+
+        .story-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--honey-gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--parchment);
+            margin-bottom: 32px;
+            line-height: 1.1;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-body {
+            color: rgba(255, 248, 235, 0.95);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            text-shadow: 0 1px 16px rgba(0, 0, 0, 0.85);
+            font-weight: 500;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 80px;
+            color: var(--honey-gold);
+            line-height: 0.8;
+            margin: 8px 16px 0 0;
+        }
+
+        .story-link {
+            color: var(--amber);
+            font-weight: 500;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            transition: color 300ms;
+        }
+
+        .story-link:hover {
+            color: var(--honey-gold);
+        }
+
+        .story-link:hover span {
+            transform: translateX(4px);
+            transition: 300ms ease;
+        }
+
+        .story-img-col {
+            position: relative;
+            height: 600px;
+            z-index: 2;
+        }
+
+        .stat-cards-wrapper {
+            position: absolute;
+            left: -60px;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 4;
+        }
+
+        .stat-card {
+            background: rgba(249, 242, 229, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(249, 242, 229, 0.12);
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            width: 160px;
+        }
+
+        .stat-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--honey-gold);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 900px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story-img-col {
+                height: 400px;
+            }
+
+            .stat-cards-wrapper {
+                left: 20px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                top: -40px;
+            }
+        }
+    </style>
+
+    <!-- Section 6: Brand Story -->
+    <section class="brand-story" id="story-section">
+        <div class="story-texture"></div>
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-text-col scroll-up">
+                    <span class="story-eyebrow">Our Story</span>
+                    <h2 class="story-title">Born from the Heart of the Himalayas</h2>
+                    <p class="story-body"><span class="drop-cap">W</span>e believe that true wellness starts at the
+                        source.
+                        Deep in the pristine altitudes of Uttarakhand, where the air is crisp and the soil untouched by
+                        modern chemicals, our story began. It wasn't born in a lab, but in the terraced farms of
+                        generational artisans.</p>
+                    <p class="story-body">For centuries, the local communities have understood the profound connection
+                        between the earth and the human gut. By carefully harvesting wild forest prebiotic honey and
+                        hand-crafting unrefined jaggery, they preserved nature's raw energy in every spoonful.</p>
+                    <p class="story-body">GWellth was founded to bring these ancient, science-backed superfoods directly
+                        to
+                        you. No middlemen, no artificial additives. Just pure, targeted nutrition designed to fuel your
+                        immunity and restore your body’s natural balance.</p>
+                    <a href="#" class="story-link">Read Our Full Story <span>&rarr;</span></a>
+                </div>
+
+                <div class="story-img-col">
+                    <div class="stat-cards-wrapper" id="story-stats">
+                        <div class="stat-card"><span class="stat-val stat-count" data-target="35">0</span><span
+                                class="stat-label">COUNTRIES</span></div>
+                        <div class="stat-card"><span class="stat-val"><span class="stat-count"
+                                    data-target="1000">0</span>+</span><span class="stat-label">CUSTOMERS</span></div>
+                        <div class="stat-card"><span class="stat-val"><span class="stat-count"
+                                    data-target="100">0</span>%</span><span class="stat-label">NATURAL</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 7: Benefits */
+        .benefits {
+            background: var(--parchment);
+            padding: 100px 0;
+        }
+
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .ben-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .ben-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+
+        .ben-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        .ben-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .ben-icon svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .ben-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+
+        .ben-desc {
+            color: #6B5C4E;
+            font-size: 14px;
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 24px;
+        }
+
+        .ben-link {
+            color: var(--amber);
+            font-weight: 500;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 200ms;
+        }
+
+        .ben-link:hover {
+            color: var(--honey-gold);
+        }
+
+        .ben-link:hover span {
+            transform: translateX(4px);
+            transition: 300ms;
+        }
+
+        /* Hero Benefit Card */
+        .ben-card.hero-ben {
+            background: var(--deep-earth);
+            border-color: rgba(242, 184, 75, 0.2);
+        }
+
+        .ben-card.hero-ben .ben-name {
+            color: var(--honey-gold);
+        }
+
+        .ben-card.hero-ben .ben-desc {
+            color: rgba(249, 242, 229, 0.65);
+        }
+
+        /* Accent colors generated inline via styling classes */
+        .icon-forest {
+            background: rgba(47, 89, 48, 0.1);
+            color: var(--forest);
+        }
+
+        .icon-amber {
+            background: rgba(196, 122, 42, 0.1);
+            color: var(--amber);
+        }
+
+        .icon-rust {
+            background: rgba(139, 46, 15, 0.1);
+            color: var(--rust);
+        }
+
+        .icon-honey {
+            background: rgba(242, 184, 75, 0.1);
+            color: var(--honey-gold);
+        }
+
+        @media (max-width: 900px) {
+            .ben-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ben-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Section 7: Health Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-header">
+                <span class="section-eyebrow">Science-Backed Wellness</span>
+                <h2 class="section-title">Why GWellth Works</h2>
+            </div>
+            <div class="ben-grid">
+                <div class="ben-card scroll-up" data-col="0">
+                    <div class="ben-icon icon-forest">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Gut Health</h3>
+                    <p class="ben-desc">Our prebiotic honey and millets feed the good bacteria in your digestive system,
+                        reducing bloating and improving nutrient absorption.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+
+                <div class="ben-card hero-ben scroll-up" data-col="1">
+                    <div class="ben-icon icon-amber">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Natural Energy</h3>
+                    <p class="ben-desc">Complex carbohydrates from our jaggery and millets provide sustained energy
+                        release
+                        throughout the day, preventing afternoon crashes.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+
+                <div class="ben-card scroll-up" data-col="2">
+                    <div class="ben-icon icon-rust">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Immunity Boost</h3>
+                    <p class="ben-desc">Rich in antioxidants, vitamins, and minerals. Our natural additives and
+                        unprocessed
+                        foods strengthen your body's defense mechanisms naturally.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+
+                <div class="ben-card scroll-up" data-col="0">
+                    <div class="ben-icon icon-honey">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Antioxidant</h3>
+                    <p class="ben-desc">Our unrefined products combat oxidative stress, protecting your cells from aging
+                        and
+                        reducing inflammation across your body.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+
+                <div class="ben-card scroll-up" data-col="1">
+                    <div class="ben-icon icon-rust">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Heart Health</h3>
+                    <p class="ben-desc">Low glycemic index foods like our ancient millets support healthy cholesterol
+                        levels
+                        and stabilize blood sugar for long-term cardiovascular care.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+
+                <div class="ben-card scroll-up" data-col="2">
+                    <div class="ben-icon icon-amber">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="ben-name">Skin & Energy</h3>
+                    <p class="ben-desc">The purity of Himalayan sourcing ensures untainted nourishment that reflects in
+                        clearer skin and vibrant, sustainable daily energy.</p>
+                    <a href="#" class="ben-link">Explore <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 8: Tabbed Collection */
+        .tabbed {
+            background: var(--cream);
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .tabbed-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tabbed-header .section-eyebrow {
+            color: var(--amber);
+        }
+
+        .tabbed-header .section-title {
+            font-size: 56px;
+            font-style: normal;
+            margin-bottom: 12px;
+        }
+
+        .tabbed-sub {
+            font-size: 18px;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .tab-bar-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .tab-bar {
+            display: inline-flex;
+            background: rgba(28, 18, 8, 0.08);
+            border-radius: 99px;
+            padding: 6px;
+            position: relative;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            border-radius: 99px;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+            transition: color 300ms ease;
+        }
+
+        .tab-btn.active {
+            color: white;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            top: 6px;
+            bottom: 6px;
+            background: var(--deep-earth);
+            border-radius: 99px;
+            z-index: 1;
+            transition: left 300ms cubic-bezier(0.4, 0, 0.2, 1), width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-panel {
+            display: none;
+            opacity: 0;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .carousel-wrap {
+            position: relative;
+            overflow-x: auto;
+            overflow-y: visible;
+            display: flex;
+            gap: 20px;
+            padding-bottom: 24px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(196, 122, 42, 0.5) transparent;
+        }
+
+        .carousel-wrap::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-wrap::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .carousel-wrap::-webkit-scrollbar-thumb {
+            background-color: rgba(196, 122, 42, 0.5);
+            border-radius: 10px;
+        }
+
+        .carousel-prod {
+            width: 260px;
+            flex: 0 0 260px;
+            scroll-snap-align: start;
+        }
+
+        /* Light Theme Overrides for Tabbed Section */
+        .tabbed .prod-card {
+            background: white;
+            border: 1px solid rgba(28, 18, 8, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .tabbed .prod-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .tabbed .prod-name {
+            color: var(--deep-earth);
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .carousel-prod {
+                min-width: calc(50% - 10px);
+            }
+
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            .tab-bar {
+                flex-wrap: wrap;
+            }
+
+            .tab-indicator {
+                display: none;
+            }
+
+            .tab-btn.active {
+                background: var(--deep-earth)
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carousel-prod {
+                min-width: calc(85%);
+            }
+        }
+    </style>
+
+    <!-- Section 8: Tabbed Products -->
+    <section class="tabbed">
+        <div class="container">
+            <div class="tabbed-header">
+                <span class="section-eyebrow">⚡ OUR COLLECTIONS</span>
+                <h2 class="section-title">Explore Everything GWellth</h2>
+                <p class="tabbed-sub">Four distinct product lines. One mission: your wellness.</p>
+            </div>
+
+            <div class="tab-bar-wrap">
+                <div class="tab-bar" id="tab-bar">
+                    <div class="tab-indicator" id="tab-indicator"></div>
+                    <button class="tab-btn active" data-target="tab-honey">🍯 Prebiotic Honey</button>
+                    <button class="tab-btn" data-target="tab-gur">🏔 HimGur Jaggery</button>
+                    <button class="tab-btn" data-target="tab-millet">🌾 HimMillets</button>
+                    <button class="tab-btn" data-target="tab-spice">🌶 South Indian</button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-content">
+                <!-- Panel 1 -->
+                <div class="tab-panel active" id="tab-honey">
+                    <div class="carousel-wrap">
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey01.png" alt="Honey 1" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Wild Forest Honey</h3>
+                                <div class="price-col"><span class="price-new">₹759</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey02.png" alt="Honey 2" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Acacia Honey</h3>
+                                <div class="price-col"><span class="price-old">₹899</span><span
+                                        class="price-new">₹699</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey03.png" alt="Honey 3" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Eucalyptus Honey</h3>
+                                <div class="price-col"><span class="price-new">₹829</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey04.png" alt="Honey 4" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Multiflora Honey</h3>
+                                <div class="price-col"><span class="price-new">₹649</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey05.png" alt="Honey 5" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Raw Tulsi Honey</h3>
+                                <div class="price-col"><span class="price-new">₹899</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-img-zone"><img src="assets/Honey06.png" alt="Honey 6" class="prod-img">
+                            </div>
+                            <div class="prod-info">
+                                <h3 class="prod-name">Kashmiri White Honey</h3>
+                                <div class="price-col"><span class="price-new">₹999</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Other panels hidden for snippet brevity, JS will handle fade -->
+                <div class="tab-panel" id="tab-gur">
+                    <div class="carousel-wrap">
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">HimGur Blocks</h3>
+                                <div class="price-col"><span class="price-new">₹399</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">HimGur Powder</h3>
+                                <div class="price-col"><span class="price-new">₹349</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Spiced HimGur</h3>
+                                <div class="price-col"><span class="price-new">₹449</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-millet">
+                    <div class="carousel-wrap">
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Foxtail Millet</h3>
+                                <div class="price-col"><span class="price-new">₹199</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Barnyard Millet</h3>
+                                <div class="price-col"><span class="price-new">₹229</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Pearl Millet</h3>
+                                <div class="price-col"><span class="price-new">₹179</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-spice">
+                    <div class="carousel-wrap">
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Gunpowder Podi</h3>
+                                <div class="price-col"><span class="price-new">₹249</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Guntur Chilli Powder</h3>
+                                <div class="price-col"><span class="price-new">₹189</span></div>
+                            </div>
+                        </div>
+                        <div class="prod-card carousel-prod">
+                            <div class="prod-info">
+                                <h3 class="prod-name">Sambar Masala</h3>
+                                <div class="price-col"><span class="price-new">₹219</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 9: Testimonials */
+        .testimonials {
+            background: var(--deep-earth);
+            padding: 100px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .testi-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testi-header .section-eyebrow {
+            color: var(--honey-gold);
+        }
+
+        .testi-header .section-title {
+            color: var(--parchment);
+            font-size: 52px;
+            font-style: italic;
+        }
+
+        .testi-header .section-title span {
+            color: var(--honey-gold);
+        }
+
+        .testi-rating {
+            font-size: 14px;
+            color: rgba(249, 242, 229, 0.6);
+            margin-top: 16px;
+        }
+
+        .testi-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 380px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .testi-card {
+            position: absolute;
+            width: 500px;
+            background: var(--deep-earth);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(249, 242, 229, 0.1);
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testi-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(196, 122, 42, 0.2);
+            position: absolute;
+            top: 20px;
+            left: 28px;
+            line-height: 1;
+        }
+
+        .testi-text {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(249, 242, 229, 0.8);
+            line-height: 1.7;
+            margin: 20px 0 32px 0;
+            position: relative;
+            z-index: 2;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rev-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--parchment);
+        }
+
+        .rev-info {
+            flex: 1;
+        }
+
+        .rev-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--parchment);
+        }
+
+        .rev-loc {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--amber);
+        }
+
+        .rev-stars {
+            color: var(--amber);
+            font-size: 12px;
+        }
+
+        .rev-badge {
+            position: absolute;
+            bottom: -12px;
+            right: 0;
+            background: var(--forest);
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 99px;
+        }
+
+        /* 3D Carousel states controlled by JS classes */
+        .testi-card.prev {
+            transform: translateX(-85%) scale(0.85);
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .testi-card.active {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            z-index: 2;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .testi-card.next {
+            transform: translateX(85%) scale(0.85);
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .testi-card.hidden {
+            transform: scale(0.8);
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .testi-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .testi-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(249, 242, 229, 0.08);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            transition: all 300ms;
+        }
+
+        .testi-btn:hover {
+            border-color: var(--amber);
+            background: rgba(249, 242, 229, 0.15);
+        }
+
+        .testi-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 0 16px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(249, 242, 229, 0.3);
+            transition: all 300ms;
+        }
+
+        .dot.active {
+            width: 20px;
+            background: var(--amber);
+            border-radius: 99px;
+        }
+
+        @media (max-width: 768px) {
+            .testi-card {
+                width: 90%;
+            }
+
+            .testi-card.prev {
+                transform: translateX(-30%) scale(0.9);
+                opacity: 0;
+            }
+
+            .testi-card.next {
+                transform: translateX(30%) scale(0.9);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <!-- Section 9: Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testi-header">
+                <span class="section-eyebrow">WHAT OUR CUSTOMERS SAY</span>
+                <h2 class="section-title">Loved Across India and <span>Beyond</span></h2>
+                <div class="testi-rating">⭐⭐⭐⭐⭐ Rated 4.8 out of 5 from 1,000+ reviews</div>
+            </div>
+
+            <div class="testi-carousel" id="testi-carousel">
+                <div class="testi-card active" data-idx="0">
+                    <p class="testi-text">The Prebiotic Honey has completely transformed my morning routine. I feel
+                        energized throughout the day and the natural sweetness is unmatched. You can taste the purity.
+                    </p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/100?img=5" class="rev-avatar" alt="Avatar">
+                        <div class="rev-info">
+                            <div class="rev-name">Priya S.</div>
+                            <div class="rev-loc">MUMBAI, INDIA</div>
+                        </div>
+                        <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="rev-badge">Verified Purchase · Honey</div>
+                    </div>
+                </div>
+                <div class="testi-card next" data-idx="1">
+                    <p class="testi-text">I've completely replaced my refined sugar with HimGur Jaggery. The rich,
+                        earthy
+                        flavor profile it adds to my tea is absolutely divine. My digestion has improved so much.</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/100?img=11" class="rev-avatar" alt="Avatar">
+                        <div class="rev-info">
+                            <div class="rev-name">Rahul M.</div>
+                            <div class="rev-loc">BANGALORE, INDIA</div>
+                        </div>
+                        <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="rev-badge">Verified Purchase · Jaggery</div>
+                    </div>
+                </div>
+                <div class="testi-card hidden" data-idx="2">
+                    <p class="testi-text">Finding authentic ancient millets was tough until I found GWellth. The Foxtail
+                        Millet cooks perfectly and keeps me full for hours without any bloating. Highly recommend!</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/100?img=20" class="rev-avatar" alt="Avatar">
+                        <div class="rev-info">
+                            <div class="rev-name">Ananya K.</div>
+                            <div class="rev-loc">DELHI, INDIA</div>
+                        </div>
+                        <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="rev-badge">Verified Purchase · Millets</div>
+                    </div>
+                </div>
+                <div class="testi-card prev" data-idx="3">
+                    <p class="testi-text">The South Indian condiments bring me right back to my grandmother's kitchen.
+                        The
+                        spice blends are perfectly balanced and deeply aromatic.</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/100?img=33" class="rev-avatar" alt="Avatar">
+                        <div class="rev-info">
+                            <div class="rev-name">Vikram R.</div>
+                            <div class="rev-loc">CHENNAI, INDIA</div>
+                        </div>
+                        <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="rev-badge">Verified Purchase · Condiments</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-controls">
+                <button class="testi-btn" id="t-prev">&larr;</button>
+                <div class="testi-dots" id="t-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="testi-btn" id="t-next">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section 10: Newsletter & Footer */
+        .newsletter {
+            background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200') center/cover;
+            padding: 80px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .nl-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--amber);
+            opacity: 0.88;
+            mix-blend-mode: multiply;
+        }
+
+        .nl-content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nl-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .nl-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 700;
+            font-style: italic;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .nl-sub {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+        }
+
+        .email-form {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 480px;
+            margin: 0 auto 16px auto;
+        }
+
+        .email-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-right: none;
+            color: white;
+            padding: 16px 24px;
+            font-family: 'DM Sans', sans-serif;
+            outline: none;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-submit {
+            background: var(--deep-earth);
+            color: white;
+            padding: 16px 28px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 300ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-submit:hover {
+            background: rgba(28, 18, 8, 0.9);
+            box-shadow: inset 0 0 0 1px rgba(249, 242, 229, 0.2);
+        }
+
+        .email-submit.success {
+            background: var(--forest);
+            animation: popSpring 400ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes popSpring {
+            0% {
+                transform: scale(0.8);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .nl-trust {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer {
+            background: var(--deep-earth);
+            border-top: 1px solid rgba(249, 242, 229, 0.08);
+            padding: 80px 40px 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-watermark {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 320px;
+            font-weight: 900;
+            color: rgba(249, 242, 229, 0.02);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .footer-desc {
+            color: rgba(249, 242, 229, 0.65);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(249, 242, 229, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--parchment);
+            transition: all 200ms;
+        }
+
+        .social-icons a:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--parchment);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(249, 242, 229, 0.65);
+            font-size: 14px;
+            transition: all 200ms ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col a:hover {
+            color: var(--amber);
+            transform: translateX(4px);
+        }
+
+        .prod-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(249, 242, 229, 0.07);
+            margin: 0 auto 24px auto;
+            max-width: 1200px;
+        }
+
+        .footer-bot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: rgba(249, 242, 229, 0.35);
+        }
+
+        .bot-copy {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+        }
+
+        .payments {
+            display: flex;
+            gap: 12px;
+            opacity: 0.4;
+        }
+
+        .payments svg {
+            width: auto;
+            height: 20px;
+        }
+
+        .bot-made {
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-bot {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="nl-overlay"></div>
+        <div class="nl-content scroll-up">
+            <span class="nl-eyebrow">Join the GWellth Community</span>
+            <h2 class="nl-title">Get Weekly Wellness Tips, Recipes & Exclusive Offers</h2>
+            <p class="nl-sub">Join 1,000+ subscribers who start their week with GWellth.</p>
+            <form class="email-form" id="nl-form" onsubmit="event.preventDefault(); submitForm();">
+                <input type="email" class="email-input" placeholder="Your email address" required>
+                <button type="submit" class="email-submit" id="nl-btn">Subscribe</button>
+            </form>
+            <div class="nl-trust">🔒 No spam. Unsubscribe anytime. Max 2 emails/week.</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-watermark">G</div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo footer-logo">
+                    <img src="assets/logo.png" alt="GWellth Logo">
+                </div>
+                <p class="footer-desc">Premium artisan apothecary deeply rooted in the Himalayan mountain retreat.
+                    Nature's
+                    finest, pure and untainted.</p>
+                <div class="social-icons">
+                    <a href="#">Fb</a><a href="#">Yt</a><a href="#">Ig</a><a href="#">In</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Products</h4>
+                <ul>
+                    <li><a href="#">
+                            <div class="prod-dot" style="background: var(--rust)"></div> HimGur Jaggery
+                        </a></li>
+                    <li><a href="#">
+                            <div class="prod-dot" style="background: var(--forest)"></div> HimMillets
+                        </a></li>
+                    <li><a href="#">
+                            <div class="prod-dot" style="background: var(--amber)"></div> Prebiotic Honey
+                        </a></li>
+                    <li><a href="#">
+                            <div class="prod-dot" style="background: var(--sage)"></div> Condiments
+                        </a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bot">
+            <div class="bot-copy">&copy; 2026 GWellth Foods and Beverages Pvt. Ltd.</div>
+            <div class="payments">
+                <span>VISA</span> <span>MC</span> <span>UPI</span> <span>RZY</span>
+            </div>
+            <div class="bot-made">Made with 🍯 for India</div>
+        </div>
+    </footer>
+    <script>
+        // 1. Custom Cursor
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let ringX = mouseX, ringY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+
+        const loop = () => {
+            ringX += (mouseX - ringX) * 0.15; // 80ms delay feel via lerp
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(loop);
+        };
+        if (window.innerWidth > 768) loop();
+
+        document.querySelectorAll('a, button, .cat-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover-btn'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover-btn'));
+        });
+
+        document.querySelectorAll('.prod-card, .story-img-wrap img').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursorRing.classList.remove('hover-btn'); cursorRing.classList.add('hover-view'); });
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover-view'));
+        });
+
+        // 2. Navigation & Annoucement Bar
+        const nav = document.getElementById('navbar');
+        const ann = document.getElementById('announcement');
+        const scrollInd = document.getElementById('scroll-ind');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                ann.classList.add('hidden');
+                scrollInd.classList.add('hidden');
+            } else {
+                ann.classList.remove('hidden');
+                scrollInd.classList.remove('hidden');
+            }
+            if (window.scrollY > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // 3. Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const drawer = document.getElementById('drawer');
+        const drawerBg = document.getElementById('drawer-bg');
+        const toggleMenu = () => {
+            drawer.classList.toggle('open');
+            drawerBg.classList.toggle('open');
+        };
+        menuBtn.addEventListener('click', toggleMenu);
+        drawerBg.addEventListener('click', toggleMenu);
+
+        // 4. Hero Load Animation
+        window.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.revealable');
+            reveals.forEach(el => {
+                const delay = el.getAttribute('data-delay');
+                el.style.transition = `opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 800ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        });
+
+        // 5. Scroll Reveals (Intersection Observer)
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    if (entry.target.classList.contains('stat-count')) {
+                        startCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-up, .stat-count').forEach(el => {
+            observer.observe(el);
+        });
+
+        function startCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 1500;
+            const stepTime = Math.abs(Math.floor(duration / target));
+            let current = 0;
+            const timer = setInterval(() => {
+                current += Math.ceil(target / 50);
+                if (current >= target) {
+                    el.innerText = target;
+                    clearInterval(timer);
+                } else el.innerText = current;
+            }, stepTime);
+        }
+
+        // 6. Wishlist Toggle
+        document.querySelectorAll('.prod-wish').forEach(heart => {
+            heart.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+                const badge = document.getElementById('wishlist-badge');
+                let count = parseInt(badge.innerText);
+                if (this.classList.contains('active')) {
+                    this.style.transform = 'scale(1.4)';
+                    setTimeout(() => this.style.transform = 'scale(1)', 300);
+                    badge.innerText = count + 1;
+                    const plus = this.nextElementSibling;
+                    plus.style.animation = 'none';
+                    plus.offsetHeight; /* trigger reflow */
+                    plus.style.animation = null;
+                } else {
+                    badge.innerText = Math.max(0, count - 1);
+                }
+            });
+        });
+
+        // 7. Parallax Brand Story
+        const storyBg = document.getElementById('story-bg-img');
+        const storyStats = document.getElementById('story-stats');
+        const storySection = document.getElementById('story-section');
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 900) return;
+            const rect = storySection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const scrolled = (window.innerHeight - rect.top) * 0.4;
+                storyBg.style.transform = `translateY(${scrolled}px) scale(1.2)`;
+                storyStats.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // 8. Tabbed Collection
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        const indicator = document.getElementById('tab-indicator');
+
+        function moveIndicator(btn) {
+            if (window.innerWidth <= 900) return;
+            indicator.style.width = btn.offsetWidth + 'px';
+            indicator.style.left = btn.offsetLeft + 'px';
+        }
+
+        window.addEventListener('load', () => moveIndicator(document.querySelector('.tab-btn.active')));
+        window.addEventListener('resize', () => moveIndicator(document.querySelector('.tab-btn.active')));
+
+        tabBtns.forEach((btn, idx) => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const currentActiveBtn = document.querySelector('.tab-btn.active');
+                const currentActivePanel = document.querySelector('.tab-panel.active');
+
+                if (targetId === currentActivePanel.id) return;
+
+                const oldIdx = Array.from(tabBtns).indexOf(currentActiveBtn);
+                const direction = idx > oldIdx ? 'left' : 'right';
+                const enterStart = direction === 'left' ? '30px' : '-30px';
+                const exitEnd = direction === 'left' ? '-20px' : '20px';
+
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                moveIndicator(btn);
+
+                currentActivePanel.style.transform = `translateX(${exitEnd})`;
+                currentActivePanel.style.opacity = '0';
+
+                setTimeout(() => {
+                    currentActivePanel.classList.remove('active');
+                    currentActivePanel.style.transform = '';
+
+                    const newPanel = document.getElementById(targetId);
+                    newPanel.classList.add('active');
+                    newPanel.style.transform = `translateX(${enterStart})`;
+                    newPanel.style.opacity = '0';
+
+                    requestAnimationFrame(() => {
+                        newPanel.style.transition = 'all 300ms ease';
+                        newPanel.style.transform = 'translateX(0)';
+                        newPanel.style.opacity = '1';
+                    });
+                }, 200);
+            });
+        });
+
+        // 9. Testimonials Carousel
+        const tCards = Array.from(document.querySelectorAll('.testi-card'));
+        const tDots = Array.from(document.querySelectorAll('.dot'));
+        let tActive = 0;
+
+        function updateCarousel() {
+            tCards.forEach((card, i) => {
+                card.className = 'testi-card';
+                if (i === tActive) card.classList.add('active');
+                else if (i === (tActive - 1 + tCards.length) % tCards.length) card.classList.add('prev');
+                else if (i === (tActive + 1) % tCards.length) card.classList.add('next');
+                else card.classList.add('hidden');
+            });
+            tDots.forEach((dot, i) => dot.classList.toggle('active', i === tActive));
+        }
+
+        function nextTesti() { tActive = (tActive + 1) % tCards.length; updateCarousel(); }
+        function prevTesti() { tActive = (tActive - 1 + tCards.length) % tCards.length; updateCarousel(); }
+
+        document.getElementById('t-next').addEventListener('click', nextTesti);
+        document.getElementById('t-prev').addEventListener('click', prevTesti);
+
+        let autoScroll = setInterval(nextTesti, 4500);
+        document.getElementById('testi-carousel').addEventListener('mouseenter', () => clearInterval(autoScroll));
+        document.getElementById('testi-carousel').addEventListener('mouseleave', () => autoScroll = setInterval(nextTesti, 4500));
+
+        // 10. Newsletter Form
+        function submitForm() {
+            const btn = document.getElementById('nl-btn');
+            btn.innerHTML = '✓ Subscribed';
+            btn.classList.add('success');
+            setTimeout(() => {
+                btn.innerHTML = 'Subscribe';
+                btn.classList.remove('success');
+                document.getElementById('nl-form').reset();
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
